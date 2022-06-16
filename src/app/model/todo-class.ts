@@ -26,14 +26,6 @@ export class TodoClass {
 
 }
 
-// export enum TodoPriority{
-//   DONE = { order: -1, name: 'completato', color: 'gray' },
-//   LOW = { order: 0, name: 'bassa', color: 'green' },
-//   MEDIUM = { order: 1, name: 'media', color: 'yellow' } ,
-//   HIGH = { order: 2, name: 'alta', color: 'orange' },
-//   VERYHIGH = { order: 3, name: 'molto alta', color: 'red' }
-// }
-
 export enum TodoPriority {
   DONE =  -1,
   LOW = 0,

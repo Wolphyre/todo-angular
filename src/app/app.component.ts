@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoClass } from './model/todo-class';
-import { TODOS } from './model/todos-mock';
+import { TodoClass, TodoPriority } from './model/todo-class';
+import { fromPriorityToColor, fromPriorityToDescr, TodoInterface } from './model/todo-interface';
+import { TODOS, TODOS_I } from './model/todos-mock';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,14 @@ export class AppComponent implements OnInit {
 
   constructor(){
     this.todosArray = TODOS;
+
+    // const pippo = {name: 'ciao', surname: 'ciao', min: 4}
+
+    // const min = this.getMinValue(pippo, 4);
+
+    // console.log(min);
   }
+
 
 
   ngOnInit(): void {
@@ -27,4 +35,27 @@ export class AppComponent implements OnInit {
     // console.log(nuoviTodos);
   }
 
+  // getCorrectDate(timestamp: number): Date{
+  //   const milliseconds = timestamp * 1000;
+  //   return new Date(milliseconds);
+  // }
+
+  // getDescription(priority: TodoPriority){
+  //   return fromPriorityToDescr(priority)
+  // }
+
+  // getColor(priority: TodoPriority) {
+  //   return fromPriorityToColor(priority)
+  // }
+
+  // getMinValue(obj: hasMin, defaultMin: number){
+  //   const minOfObject = obj.min;
+  //   return minOfObject < defaultMin ? minOfObject : defaultMin;
+  // }
+
+
 }
+
+// export interface hasMin{
+//   min: number;
+// }

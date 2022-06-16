@@ -1,11 +1,13 @@
-<h1>{{title}}</h1>
 
-<div [style.background-color]="todo.color"  class="todo-card" *ngFor="let todo of todosArray">
+
+<!-- <div [style.background-color]="getColor(todo.priority)"   class="todo-card" *ngFor="let todo of todosArray">
   <span>{{todo.name}}</span>
-  <span>{{todo.creationDate}}</span>
+  <span>{{getCorrectDate(todo.creationDate)}}</span>
   <span>{{todo.priority}}</span>
-  <span>{{todo.description}}</span>
-  <!-- <span>{{todo.color}}</span> -->
-</div>
+  <span>{{getDescription(todo.priority)}}</span>
 
-<router-outlet></router-outlet>
+</div> -->
+
+<h1>{{title}}</h1>
+<app-todo-list [todos]="todosArray"></app-todo-list>
+<!-- <router-outlet></router-outlet> -->
