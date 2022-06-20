@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TodoClass } from 'src/app/model/todo-class';
+import { ApiService } from 'src/app/services/api.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class TodoListComponent implements OnInit, AfterViewInit, OnDestroy {
   //   this.orderByPriority()
   // }
 
-  constructor(private dataServ: DataService) {
+  constructor(private dataServ: DataService, private apiServ: ApiService) {
     this.todosArray = dataServ.getActiveTodos();
   }
 

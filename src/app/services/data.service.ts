@@ -9,11 +9,28 @@ import { ApiService } from './api.service';
 })
 export class DataService {
 
-  todos: TodoClass[];
+  todos: TodoClass[] = [];
 
   constructor(private apiServ: ApiService) {
-    this.todos = TODOS;
+    // apiServ.fetchData()
+    // .then(resp => resp.json())
+    // .then(result => this.todos = this.convertToTodoClass(result))
+    // .catch(err => console.log(err))
+    this.apiServ.getTodosFromDb().subscribe({
+      next: result => this.todos = result,
+      error: err => console.log(err)
+    })
+    // this.todos = TODOS;
   }
+
+  // convertToTodoClass(dbObjectArray: any[]){
+  //   const todoArray = [];
+  //   for (const dbObject of dbObjectArray) {
+  //     const newTodo = TodoClass.fromDbObj(dbObject);
+  //     todoArray.push(newTodo);
+  //   }
+  //   return todoArray;
+  // }
 
   getActiveTodos(): TodoClass[]{
     const tempTodos = [];
