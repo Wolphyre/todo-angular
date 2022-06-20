@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TodoClass } from 'src/app/model/todo-class';
 
 @Component({
@@ -6,23 +6,83 @@ import { TodoClass } from 'src/app/model/todo-class';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @Input() todos: TodoClass[];
+  // @Input() todos: TodoClass[];
+
+  todosArray: TodoClass[];
+
+  @Input() set todos(value: TodoClass[]){
+    this.todosArray = value;
+    this.orderByPriority()
+  }
 
   constructor() {
-    this.todos = []
+    this.todosArray = []
   }
 
   ngOnInit(): void {
+    // this.orderByPriority()
+  }
+
+  ngAfterViewInit(): void {
+
+  }
+
+  ngOnDestroy(): void {
+
+  }
+
+  manageTodoEmission(todo: TodoClass){
+    console.log('list-componet', todo.name)
+    this.orderByPriority();
   }
 
   orderByName(){
+    // this.todos.sort((a: TodoClass, b:TodoClass) => {
+    //   // if (a.name < b.name) {
+    //   //   return -1;
+    //   // }
+    //   // if (a.name > b.name) {
+    //   //   return 1;
+    //   // }
+    //   // return 0;
+    //   return a.name.localeCompare(b.name);
+    // });
 
+    // this.todos.sort(TodoClass.compareByName);
+    this.todosArray.sort(TodoClass.compareByName);
   }
 
   orderByDate(){
-
+    // this.todos.sort((a, b) => {
+    //   if (a.creationDate < b.creationDate) {
+    //     return -1;
+    //   }
+    //   if (a.creationDate > b.creationDate) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // });
+    // this.todos.sort(TodoClass.compareByDate);
+    this.todosArray.sort(TodoClass.compareByDate);
   }
 
+  orderByPriority(){
+    // this.todos.sort(TodoClass.compareByPriority)
+    this.todosArray.sort(TodoClass.compareByPriority)
+  }
+
+
+
 }
+
+// <function ciao(text: string) {
+//   return 'ciao ' + text;
+// }
+
+// const ciao2 = function(text: string){
+//   return 'ciao' + text;
+// }
+
+// const ciao3 = (text: string) => 'ciao'+ text;>

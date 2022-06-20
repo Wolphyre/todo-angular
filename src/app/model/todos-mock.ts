@@ -13,6 +13,18 @@ TODOS.push(todo2);
 TODOS.push(todo3);
 TODOS.push(todo4);
 
+export const TODOS2: TodoClass[] = [];
+
+const todo5 = new TodoClass('bere più birre!', [], new Date(), TodoPriority.VERYHIGH);
+const todo6 = new TodoClass('andare in vacanza');
+const todo7 = new TodoClass('ordinare la pizza');
+const todo8 = new TodoClass('dormire fino a mezzogiorno', [], new Date(), TodoPriority.HIGH)
+
+TODOS2.push(todo5);
+TODOS2.push(todo6);
+TODOS2.push(todo7);
+TODOS2.push(todo8);
+
 export const TODOS_I:TodoInterface[] = [
   {
     "creationDate": 1653288733,
