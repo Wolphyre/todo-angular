@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TodoClass } from 'src/app/model/todo-class';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,13 +13,17 @@ export class TodoListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   todosArray: TodoClass[];
 
-  @Input() set todos(value: TodoClass[]){
-    this.todosArray = value;
-    this.orderByPriority()
+  // @Input() set todos(value: TodoClass[]){
+  //   this.todosArray = value;
+  //   this.orderByPriority()
+  // }
+
+  constructor(private dataServ: DataService) {
+    this.todosArray = dataServ.getActiveTodos();
   }
 
-  constructor() {
-    this.todosArray = []
+  refreshArray(){
+    this.todosArray = this.dataServ.getActiveTodos();
   }
 
   ngOnInit(): void {
@@ -34,8 +39,9 @@ export class TodoListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   manageTodoEmission(todo: TodoClass){
-    console.log('list-componet', todo.name)
+    this.refreshArray();
     this.orderByPriority();
+
   }
 
   orderByName(){
