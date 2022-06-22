@@ -12,7 +12,7 @@ export class TodoListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // @Input() todos: TodoClass[];
 
-  todosArray: TodoClass[];
+  todosArray: TodoClass[] = [];
 
   // @Input() set todos(value: TodoClass[]){
   //   this.todosArray = value;
@@ -20,11 +20,14 @@ export class TodoListComponent implements OnInit, AfterViewInit, OnDestroy {
   // }
 
   constructor(private dataServ: DataService, private apiServ: ApiService) {
-    this.todosArray = dataServ.getActiveTodos();
+    dataServ.getActiveTodos().subscribe({
+      next: todos => this.todosArray = todos,
+      error: err => console.log(err)
+    });
   }
 
   refreshArray(){
-    this.todosArray = this.dataServ.getActiveTodos();
+    // this.todosArray = this.dataServ.getActiveTodos();
   }
 
   ngOnInit(): void {
@@ -40,9 +43,7 @@ export class TodoListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   manageTodoEmission(todo: TodoClass){
-    this.refreshArray();
-    this.orderByPriority();
-
+    this.dataServ.refreshTodos()
   }
 
   orderByName(){

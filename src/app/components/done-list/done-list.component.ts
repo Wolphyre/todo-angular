@@ -9,22 +9,24 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class DoneListComponent implements OnInit {
 
-  todosArray: TodoClass[];
+  todosArray: TodoClass[] = [];
 
   constructor(private dataServ: DataService) {
-    this.todosArray = dataServ.getDoneTodos();
+    dataServ.getDoneTodos().subscribe({
+      next: todos => this.todosArray = todos,
+      error: err => console.log(err)
+    })
   }
 
   ngOnInit(): void {
   }
 
   refreshArray(){
-    this.todosArray = this.dataServ.getDoneTodos();
+    // this.todosArray = this.dataServ.getDoneTodos();
   }
 
-  manageTodoEmission(todo: TodoClass) {
-    console.log('list-componet', todo.name)
-    this.orderByPriority();
+  manageTodoDelete(todo: TodoClass) {
+    this.dataServ.removeTodo(todo);
   }
 
   orderByName() {

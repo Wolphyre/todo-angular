@@ -20,14 +20,14 @@ export class ApiService {
     );
   }
 
-  makeVeryHigh(todos: TodoClass[]){
-    const newArray = [];
-    for (const todo of todos) {
-      todo.priority = TodoPriority.VERYHIGH;
-      newArray.push(todo);
-    }
-    return newArray;
-  }
+  // makeVeryHigh(todos: TodoClass[]){
+  //   const newArray = [];
+  //   for (const todo of todos) {
+  //     todo.priority = TodoPriority.VERYHIGH;
+  //     newArray.push(todo);
+  //   }
+  //   return newArray;
+  // }
 
   convertToTodoClass(dbObjectArray: any[]) {
     const todoArray = [];
