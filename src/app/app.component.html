@@ -7,10 +7,16 @@
   <span>{{getDescription(todo.priority)}}</span>
 
 </div> -->
-
+<header class="header">
 <h1>{{title}}</h1>
+<nav>
+  <a routerLink="/active" >Active Todos</a>
+  <a routerLink="/done" >Done Todos</a>
+</nav>
+</header>
+
 <!-- <button (click)="toLuxuryMode()">Passa a modalità lusso!</button> -->
-<app-todo-list></app-todo-list>
-<h2>Todo Completati</h2>
-<app-done-list></app-done-list>
-<!-- <router-outlet></router-outlet> -->
+<!-- <app-todo-list></app-todo-list>
+
+<app-done-list></app-done-list> -->
+<router-outlet></router-outlet>
