@@ -9,6 +9,7 @@ import { TodoListElementComponent } from './components/todo-list-element/todo-li
 import { DoneListComponent } from './components/done-list/done-list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TodoDetailComponent } from './components/todo-detail/todo-detail.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,13 @@ import { TodoDetailComponent } from './components/todo-detail/todo-detail.compon
     DoneListComponent,
     PageNotFoundComponent,
     TodoDetailComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

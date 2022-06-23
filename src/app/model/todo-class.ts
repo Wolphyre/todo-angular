@@ -7,14 +7,14 @@ export class TodoClass {
   priority: TodoPriority;
   private _doneDate?: number;
 
-  constructor(name: string, tags: string[] = [], creationDate: Date = new Date(), priority: TodoPriority = TodoPriority.LOW){
+  constructor(name: string, tags: string[] = [], creationDate: Date = new Date(), priority: TodoPriority = TodoPriority.LOW) {
     this.name = name;
     this.tags = tags;
     this._creationDate = creationDate.getTime();
     this.priority = priority;
   }
 
-  get creationDate(): Date{
+  get creationDate(): Date {
     return new Date(this._creationDate);
   }
 
@@ -26,33 +26,33 @@ export class TodoClass {
     }
   }
 
-  get color(): string{
+  get color(): string {
     return getPriorityColor(this.priority);
   }
 
-  get description(): string{
+  get description(): string {
     return getPriorityString(this.priority);
   }
 
-  done(): void{
+  done(): void {
     const now = new Date();
-    this.priority = TodoPriority.DONE;
     this._doneDate = now.getTime();
+    this.priority = TodoPriority.DONE;
   }
 
-  static compareByName(a: TodoClass, b:TodoClass){
+  static compareByName(a: TodoClass, b: TodoClass) {
     return a.name.localeCompare(b.name);
   }
 
-  static compareByDate(a: TodoClass, b: TodoClass){
+  static compareByDate(a: TodoClass, b: TodoClass) {
     return a._creationDate - b._creationDate;
   }
 
-  static compareByPriority(a: TodoClass, b: TodoClass){
+  static compareByPriority(a: TodoClass, b: TodoClass) {
     return b.priority - a.priority;
   }
 
-  static fromDbObj(dbObject: any): TodoClass{
+  static fromDbObj(dbObject: any): TodoClass {
     const todo = new TodoClass(dbObject.name, dbObject.tags, new Date(dbObject.creationDate * 1000), dbObject.priority);
     todo.id = dbObject.id;
     if (dbObject.doneDate) {
@@ -61,18 +61,28 @@ export class TodoClass {
     return todo;
   }
 
+  static toDbObj(todo: TodoClass): any {
+    const dbObject: any = {};
+    dbObject.id = todo.id
+    dbObject.name = todo.name
+    dbObject.tags = todo.tags
+    dbObject.priority = todo.priority
+    dbObject.creationDate = todo._creationDate
+    dbObject.doneDate = todo.doneDate
+    return dbObject
+  }
 
 }
 
 export enum TodoPriority {
-  DONE =  -1,
+  DONE = -1,
   LOW = 0,
   MEDIUM = 1,
   HIGH = 2,
   VERYHIGH = 3
 }
 
-export function getPriorityColor(priority: TodoPriority): string{
+export function getPriorityColor(priority: TodoPriority): string {
   switch (priority) {
     case TodoPriority.DONE:
       return 'gray';
